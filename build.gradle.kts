@@ -4,7 +4,6 @@ import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
 
 plugins {
     kotlin("multiplatform") version "1.9.23"
-    application
 }
 
 // This might not be a good idea, but I'm new at this
@@ -18,10 +17,6 @@ project.rootProject.plugins.withType(YarnPlugin::class.java) {
 
 group = "hello_kotlin_js"
 version = "1.0"
-
-application {
-    mainClass.set("AppKt")
-}
 
 repositories {
     mavenCentral()
