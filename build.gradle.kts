@@ -39,6 +39,8 @@ kotlin {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.8.0")
                 implementation("org.jetbrains.kotlin-wrappers:kotlin-node:20.11.30-pre.739")
+                // 'npm(String, String, Boolean): Dependency' is deprecated. Dukat integration is in redesigning process. Now it does not work.
+                // implementation(npm("axios", "1.6.8", generateExternals = true))
                 implementation(npm("axios", "1.6.8"))
             }
         }
