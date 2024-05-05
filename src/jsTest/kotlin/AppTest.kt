@@ -4,6 +4,11 @@ import kotlin.test.assertEquals
 class AppTest {
     @Test
     fun thingsShouldWork() {
-        assertEquals(listOf(1,2,3).reversed(), listOf(3,2,1))
+        // jsMain type
+        val print = Print()
+        val actual = print.reverseList(listOf(1, 2, 3))
+
+        val expected = listOf(3, 2, 1, 0)
+        assertEquals(expected, actual)
     }
 }

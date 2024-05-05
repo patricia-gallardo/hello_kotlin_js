@@ -1,4 +1,8 @@
 fun main() {
+    // commonMain type
     val hello = Hello()
-    console.log(hello.sayHello())
+    // jsMain type
+    val print = Print()
+
+    print.console(hello.sayHello())
 }
