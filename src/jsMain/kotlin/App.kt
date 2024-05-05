@@ -1,3 +1,4 @@
 fun main() {
-    console.log("Hello, Kotlin/JS!")
+    val hello = Hello()
+    console.log(hello.sayHello())
 }
