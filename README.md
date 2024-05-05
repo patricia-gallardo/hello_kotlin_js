@@ -1,5 +1,7 @@
 # Kotlin/JS Hello World project
 
+The basic idea is to provide a project that builds and runs, while also showing how the various pieces can interact.
+
 The main function of this project is
 
 ~~~kotlin
