@@ -3,7 +3,7 @@ plugins {
     application
 }
 
-group = "hello_gradle"
+group = "hello_kotlin_js"
 version = "1.0"
 
 application {
