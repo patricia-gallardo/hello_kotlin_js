@@ -43,6 +43,7 @@ kotlin {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.6.4")
                 implementation("org.jetbrains.kotlin-wrappers:kotlin-node:18.14.0-pre.504")
+                implementation(npm("puppeteer", "> 22.7.0"))
             }
         }
         commonTest.dependencies {
