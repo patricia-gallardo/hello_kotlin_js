@@ -1,6 +1,19 @@
+import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnLockMismatchReport
+import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
+import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
+
 plugins {
     kotlin("multiplatform") version "1.9.23"
     application
+}
+
+// This might not be a good idea, but I'm new at this
+project.rootProject.plugins.withType(YarnPlugin::class.java) {
+    with(project.rootProject.the<YarnRootExtension>()) {
+        yarnLockMismatchReport = YarnLockMismatchReport.NONE
+        yarnLockAutoReplace = true
+//        reportNewYarnLock = false
+    }
 }
 
 group = "hello_kotlin_js"
