@@ -1,6 +1,12 @@
+import org.gradle.internal.logging.text.StyledTextOutput
+import org.gradle.internal.logging.text.StyledTextOutput.Style
+import org.gradle.internal.logging.text.StyledTextOutputFactory
+import org.gradle.kotlin.dsl.support.serviceOf
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnLockMismatchReport
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
+
+val out: StyledTextOutput = project.serviceOf<StyledTextOutputFactory>().create("output")
 
 plugins {
     kotlin("multiplatform") version "1.9.23"
@@ -48,8 +54,35 @@ kotlin {
                 implementation(npm("axios", "1.6.8"))
             }
         }
-        commonTest.dependencies {
-            implementation(kotlin("test")) // Brings all the platform dependencies automatically
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test")) // Brings all the platform dependencies automatically
+            }
+        }
+        val jsTest by getting {
+            dependencies {
+                implementation(kotlin("test")) // Brings all the platform dependencies automatically
+            }
         }
     }
+}
+
+tasks.withType<AbstractTestTask> {
+    afterSuite(KotlinClosure2({ desc: TestDescriptor, result: TestResult ->
+        fun status(prefix: String, resultType: TestResult.ResultType, header: Boolean = false): StyledTextOutput {
+            val progressStatus = if (header) Style.Header else Style.Info
+            return when (resultType) {
+                TestResult.ResultType.SUCCESS -> out.style(progressStatus).text(prefix).style(Style.Success).text(resultType)
+                TestResult.ResultType.FAILURE -> out.style(progressStatus).text(prefix).style(Style.Failure).text(resultType)
+                TestResult.ResultType.SKIPPED -> out.style(progressStatus).text(prefix).style(Style.Info).text(resultType)
+            }
+        }
+
+        fun col(text: String) = text.padEnd(11, ' ')
+        if (desc.parent == null) {
+            status("${col("TEST RESULT")} : ", result.resultType, true).println()
+        } else {
+            status("${col(desc.displayName)} : ", result.resultType).println()
+        }
+    }))
 }

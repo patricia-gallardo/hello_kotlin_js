@@ -20,14 +20,39 @@ fun main() {
 
 Which can be found in [src/jsMain/kotlin/App.kt](src/jsMain/kotlin/App.kt)
 
-Seems like this is a way to build and run on the commandline
+## To run app
 
 ~~~bash
 ./gradlew jsNodeRun
 ~~~
 
-Possibly
+Which produces the output
+
+~~~
+> Task :jsNodeRun
+Hello, Kotlin/JS!
+ZipResult for 87701 was : ZipResult(country=US, state=NM, city=LAS VEGAS)
+~~~
+
+### To run continuously
 
 ~~~bash
 ./gradlew jsNodeRun --continuous
+~~~
+
+## To run the tests
+
+~~~bash
+./gradlew cleanAllTests jsNodeTest
+~~~
+
+Which produces the output
+
+~~~
+> Task :jsNodeTest
+  0 passing (2ms)
+HelloTest   : SUCCESS
+AppTest     : SUCCESS
+TEST RESULT : SUCCESS
+BUILD SUCCESSFUL in 1s
 ~~~
