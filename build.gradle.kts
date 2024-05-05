@@ -12,12 +12,11 @@ plugins {
     kotlin("multiplatform") version "1.9.23"
 }
 
-// This might not be a good idea, but I'm new at this
+// Generate the yarn file automatically
 project.rootProject.plugins.withType(YarnPlugin::class.java) {
     with(project.rootProject.the<YarnRootExtension>()) {
         yarnLockMismatchReport = YarnLockMismatchReport.NONE
         yarnLockAutoReplace = true
-//        reportNewYarnLock = false
     }
 }
 
@@ -45,6 +44,8 @@ kotlin {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.8.0")
                 implementation("org.jetbrains.kotlin-wrappers:kotlin-node:20.11.30-pre.739")
+
+                // Dukat integration was supposed to give TypeScript -> Kotlin types, but it has been deprecated
                 // ==========
                 // Please note, Dukat integration in Gradle plugin does not work now.
                 // It is in redesigning process.
@@ -67,6 +68,7 @@ kotlin {
     }
 }
 
+// Just a nice to have, gives a slightly prettier output when running the tests
 tasks.withType<AbstractTestTask> {
     afterSuite(KotlinClosure2({ desc: TestDescriptor, result: TestResult ->
         fun status(prefix: String, resultType: TestResult.ResultType, header: Boolean = false): StyledTextOutput {
