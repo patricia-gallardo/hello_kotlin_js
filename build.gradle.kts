@@ -1,21 +1,31 @@
 plugins {
-    kotlin("jvm") version "1.9.23"
+    kotlin("multiplatform") version "1.8.10"
+    application
 }
 
-group = "no.turtlesec"
-version = "1.0-SNAPSHOT"
+group = "hello_gradle"
+version = "1.0"
+
+application {
+    mainClass.set("AppKt")
+}
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation(kotlin("test"))
-}
-
-tasks.test {
-    useJUnitPlatform()
-}
 kotlin {
-    jvmToolchain(21)
+    js(IR) {
+        nodejs {}
+        binaries.executable()
+    }
+
+    sourceSets["commonMain"].dependencies {
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    }
+
+    sourceSets["jsMain"].dependencies {
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.6.4")
+        implementation("org.jetbrains.kotlin-wrappers:kotlin-node:18.14.0-pre.504")
+    }
 }
