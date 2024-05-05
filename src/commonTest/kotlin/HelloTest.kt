@@ -5,6 +5,6 @@ class HelloTest {
     @Test
     fun checkHello() {
         val hello = Hello()
-        assertEquals("Hello, Kotlin/JS!!", hello.sayHello())
+        assertEquals("Hello, Kotlin/JS!", hello.sayHello())
     }
 }
