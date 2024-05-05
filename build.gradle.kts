@@ -37,7 +37,7 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.8.0")
-                implementation("org.jetbrains.kotlin-wrappers:kotlin-node:18.14.0-pre.504")
+                implementation("org.jetbrains.kotlin-wrappers:kotlin-node:20.11.30-pre.739")
                 implementation(npm("puppeteer", "> 22.7.0"))
             }
         }
