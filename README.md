@@ -13,3 +13,15 @@ fun main() {
 ~~~
 
 Which can be found in [src/jsMain/kotlin/App.kt](src/jsMain/kotlin/App.kt)
+
+Seems like this is a way to build and run on the commandline
+
+~~~bash
+./gradlew jsNodeRun
+~~~
+
+Possibly
+
+~~~bash
+./gradlew jsNodeRun --continuous
+~~~
