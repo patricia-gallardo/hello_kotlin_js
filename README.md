@@ -1,14 +1,20 @@
 # Kotlin/JS Hello World project
 
-Made by Patricia who has zero experience with both Gradle *and* Kotlin/JS
-
-PRs are non-ironically welcome. Anything to make this not suck terribly.
-
-The actual code contained in this project is
+The main function of this project is
 
 ~~~kotlin
 fun main() {
-    console.log("Hello, Kotlin/JS!")
+    // commonMain type (pure Kotlin)
+    val hello = Hello()
+
+    // jsMain type (Kotlin code that interfaces with Node)
+    val someObject = KotlinClassInJsMain()
+
+    // Use them together (JsMain type prints string from pure Kotlin to the console)
+    someObject.console(hello.sayHello())
+
+    // Call out to a node lib (axios) to query an API
+    someObject.demoCallingANodeLib()
 }
 ~~~
 
