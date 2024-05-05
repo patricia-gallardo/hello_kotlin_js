@@ -75,15 +75,13 @@ private fun demoCallingANodeLib() {
     var zipResult: ZipResult
     var errorMessage: String
 
-    axios<ZipData>(config)
-        .then { response ->
-            zipResult = ZipResult(response.data.country, response.data.state, response.data.city)
-            errorMessage = ""
-            console.log("ZipResult for $zipCode was : $zipResult")
-        }
-        .catch { error ->
-            zipResult = ZipResult("", "", "")
-            errorMessage = error.message ?: ""
-            console.log(errorMessage)
-        }
+    axios<ZipData>(config).then { response ->
+        zipResult = ZipResult(response.data.country, response.data.state, response.data.city)
+        errorMessage = ""
+        console.log("ZipResult for $zipCode was : $zipResult")
+    }.catch { error ->
+        zipResult = ZipResult("", "", "")
+        errorMessage = error.message ?: ""
+        console.log(errorMessage)
+    }
 }
